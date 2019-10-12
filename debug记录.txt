@@ -10,7 +10,9 @@ Idea：
     1.打了断点有时候显示打勾，断点运行不停留
         点击了run to cursor 运行到光标位置,因此不会在断点停留,断点之后继续程序应使用debug窗口左侧的三角形标志
     2.有时候无法识别已经import且实际存在的类
-        考虑rebuild project以及recompile当前文件.
+        考虑rebuild project以及recompile当前文件.实在不行就清除缓存然后重启项目
+    3.error launching idea ,failed to create JVM 
+        优化VMoption的配置文件时,配置项有误,可以恢复默认配置,也可以找出问题所在重新启动
 平台使用:
     1.eclipse右键找不到4j平台代码生成插件√
         视图选择不对,之前使用eclipse的导航器视图,应该使用package explorer视图(资源管理器)
@@ -32,5 +34,7 @@ Idea：
         审计追踪调用的方法不接受关键字为空值的情况,选取的关键字matId在直接新增时可能会出现空值,一种办法是限制审计追踪相关的操作,保证传入的记录项的matId不能为空;另一种办法,是将关键字更换为不可能为空的数据项recId。
     5.生产指令的批指令管理界面中无重量产出相关的物料为020500502生脉(粉碎),在配置时为020500503生脉(制粒),步骤运行时也是生脉(制粒).
     6.进行无重量产出时,识别的物料不进行消耗.
+    7.ServicePMOP08TQ.java,ServicePMOP08TQ运行失败(DAO set)
+        后台服务忘记继承ServiceEPBase....
     
    
