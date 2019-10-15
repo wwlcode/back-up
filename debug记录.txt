@@ -7,8 +7,9 @@ java:
         2.任何类都可以定义属于自己的main方法,用于单元测试.
         3.要保证线程运行不能让进程结束,可以考虑随便进行一次读取输入来维持进程.
 js:
-    1.如何在弹窗中再打开一个比它大的弹窗?
-        使用dialog进行所有的弹窗,然后在父弹窗中调用window.parent.dialog弹窗函数.重点是进行弹窗行为的对象是谁.
+    1.如何在弹窗中再打开一个比它大的弹窗(PMOP08TQ,PMOP08TQP,FMMM11P)?
+        使用dialog进行所有的弹窗,然后在PMOP08TQP弹窗中调用window.parent.dialog弹窗函数通过PMOP08TQ来弹出FMMM11P.重点是进行弹窗行为的对象是谁,应注意从弹窗返回的EiInfo是返回到PMOP08TQ页面中,通过PMOP08TQ的js中的window.returnValue获取.
+    2.想获取返回的EiInfo从window.returnValue中获取,提取其中的数据可以使用属性名访问(一般用rows).
 Idea：
     1.打了断点有时候显示打勾，断点运行不停留
         点击了run to cursor 运行到光标位置,因此不会在断点停留,断点之后继续程序应使用debug窗口左侧的三角形标志
