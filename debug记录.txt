@@ -40,5 +40,9 @@ Idea：
     6.进行无重量产出时,识别的物料不进行消耗.
     7.ServicePMOP08TQ.java,ServicePMOP08TQ运行失败(DAO set)
         后台服务忘记继承ServiceEPBase....
+    8.新建PMOP08TQ实体类后,BigDecimal数据类型进行toMap之后,发生截断,小数点后数据消失.
+        原因:toMap的数据通过eiMetadata.getMeta获取,而初始化eiMetadata时如果不对BigDecimal类型的数据设置eiColumn.setType("N")则只会保存整数部分的数据
+    9.PMOP08TQ调用别的Service的查询方法时,在进行翻页和更改单页显示时会出错
+        平台处理翻页和更改单页显示条数默认调用的是页面对应的service中的query函数,所以就算查询就算是赋值粘贴也要创建query函数.
     
    
