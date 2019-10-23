@@ -14,9 +14,12 @@ Idea：
     1.打了断点有时候显示打勾，断点运行不停留
         点击了run to cursor 运行到光标位置,因此不会在断点停留,断点之后继续程序应使用debug窗口左侧的三角形标志
     2.有时候无法识别已经import且实际存在的类
-        考虑rebuild project以及recompile当前文件.实在不行就清除缓存然后重启项目
+        考虑rebuild project以及recompile当前文件z.实在不行就清除缓存然后重启项目
     3.error launching idea ,failed to create JVM 
         优化VMoption的配置文件时,配置项有误,可以恢复默认配置,也可以找出问题所在重新启动
+PL/SQL:
+    1.表列信息的中文注释显示为问号
+        AMERICAN_AMERICA.AL32UTF8
 平台使用:
     1.eclipse右键找不到4j平台代码生成插件√
         视图选择不对,之前使用eclipse的导航器视图,应该使用package explorer视图(资源管理器)
@@ -44,5 +47,8 @@ Idea：
         原因:toMap的数据通过eiMetadata.getMeta获取,而初始化eiMetadata时如果不对BigDecimal类型的数据设置eiColumn.setType("N")则只会保存整数部分的数据
     9.PMOP08TQ调用别的Service的查询方法时,在进行翻页和更改单页显示时会出错
         平台处理翻页和更改单页显示条数默认调用的是页面对应的service中的query函数,所以就算查询就算是赋值粘贴也要创建query函数.
-    
+    10.ServiceMMCS01的新增没有记录创建人和创建时间,更改没有修改人和修改时间,需要获取数据.
+        DateUtils.curDateTimeStr14()获取当前时间
+        LoginUtil.getCurrentUserIdAndName().toString()获取登录人信息
+        LoginUtil.getCurrentWorkStationId()获取当前工作站id
    
