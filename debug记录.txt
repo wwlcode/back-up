@@ -24,6 +24,7 @@ PL/SQL:
     1.eclipse右键找不到4j平台代码生成插件√
         视图选择不对,之前使用eclipse的导航器视图,应该使用package explorer视图(资源管理器)
     2.如何在使用EFPopupInput时,弹框默认调用一次查询
+    3.使用dao.get时,调用sqlMap的方法使用xml文件中的namespace+.+方法id
     extend:
         ef.get与document.getElementById类似,是平台封装的方法.
 正大青春宝项目:
@@ -51,4 +52,7 @@ PL/SQL:
         DateUtils.curDateTimeStr14()获取当前时间
         LoginUtil.getCurrentUserIdAndName().toString()获取登录人信息
         LoginUtil.getCurrentWorkStationId()获取当前工作站id
-   
+
+
+工作进度:Servicepmop08tq.java ---------副产品产出json转换完成,等待两个json组合发送
+   注意下前后端获取的副产品物料编码id,保持一致
