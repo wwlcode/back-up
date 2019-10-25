@@ -10,6 +10,13 @@ js:
     1.如何在弹窗中再打开一个比它大的弹窗(PMOP08TQ,PMOP08TQP,FMMM11P)?
         使用dialog进行所有的弹窗,然后在PMOP08TQP弹窗中调用window.parent.dialog弹窗函数通过PMOP08TQ来弹出FMMM11P.重点是进行弹窗行为的对象是谁,应注意从弹窗返回的EiInfo是返回到PMOP08TQ页面中,通过PMOP08TQ的js中的window.returnValue获取.
     2.想获取返回的EiInfo从window.returnValue中获取,提取其中的数据可以使用属性名访问(一般用rows).
+    extend:
+        1.document.getElementById("控件ID").style.visibility="hidden"设置控件隐藏而且占有原来的位置
+            document.getElementById("控件ID").style.visibility="visible";
+            document.getElementById("控件ID").style.display="none";//设置控件隐藏且不占有原位
+            document.getElementById("控件ID").style.display="inline";
+        2.想要修改平台功能,比如EFForm中的clear按钮,则可以通过找到对应的js(EF/EFForm.js),复制里面的js函数到要修改的页面的js中(PMOP08TQP.js)进行重写
+
 Idea：
     1.打了断点有时候显示打勾，断点运行不停留
         点击了run to cursor 运行到光标位置,因此不会在断点停留,断点之后继续程序应使用debug窗口左侧的三角形标志
@@ -56,3 +63,7 @@ PL/SQL:
 
 工作进度:Servicepmop08tq.java ---------副产品产出json转换完成,等待两个json组合发送
    注意下前后端获取的副产品物料编码id,保持一致
+   关于主产品产量录入的单位,从提取车间中查询的是kg,实际上接口发送的json单位是万瓶,要么显示录入单位为万瓶,要么显示录入单位为kg然后后台录入数量时进行单位换算
+   副产品的物料编码选择要与主产品的物料相关,不能随便选择产出.
+   在进行提取产品产出入库操作时,会进行单位转换,要进行转换系数的维护
+   
