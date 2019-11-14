@@ -15,6 +15,7 @@ js:
             document.getElementById("控件ID").style.visibility="visible";
             document.getElementById("控件ID").style.display="none";//设置控件隐藏且不占有原位
             document.getElementById("控件ID").style.display="inline";
+            对于被封装的页面组件的控制,一种办法是找到对应的属性进行修改,一种是在google开发者工具中找到该页面组件的实际id通过getElementById来获取对象,如果同种类型的组件统一操作可以使用getElementsByClassName返回控件对象数组
         2.想要修改平台功能,比如EFForm中的clear按钮,则可以通过找到对应的js(EF/EFForm.js),复制里面的js函数到要修改的页面的js中(PMOP08TQP.js)进行重写
 
 Idea：
