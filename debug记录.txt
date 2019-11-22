@@ -10,6 +10,7 @@ js:
     1.如何在弹窗中再打开一个比它大的弹窗(PMOP08TQ,PMOP08TQP,FMMM11P)?
         使用dialog进行所有的弹窗,然后在PMOP08TQP弹窗中调用window.parent.dialog弹窗函数通过PMOP08TQ来弹出FMMM11P.重点是进行弹窗行为的对象是谁,应注意从弹窗返回的EiInfo是返回到PMOP08TQ页面中,通过PMOP08TQ的js中的window.returnValue获取.
     2.想获取返回的EiInfo从window.returnValue中获取,提取其中的数据可以使用属性名访问(一般用rows).
+    3.对于下拉列表的使用可以参考PMMMWPF.js中的ajax_getUnitOfBatch_callback回调函数,对所有option重写name和value值,完成显示值为生产批号_物料名称,获取值为生产批号_物料编码.
     extend:
         1.document.getElementById("控件ID").style.visibility="hidden"设置控件隐藏而且占有原来的位置
             document.getElementById("控件ID").style.visibility="visible";
@@ -17,7 +18,8 @@ js:
             document.getElementById("控件ID").style.display="inline";
             对于被封装的页面组件的控制,一种办法是找到对应的属性进行修改,一种是在google开发者工具中找到该页面组件的实际id通过getElementById来获取对象,如果同种类型的组件统一操作可以使用getElementsByClassName返回控件对象数组
         2.想要修改平台功能,比如EFForm中的clear按钮,则可以通过找到对应的js(EF/EFForm.js),复制里面的js函数到要修改的页面的js中(PMOP08TQP.js)进行重写
-
+        3.对于前后台efgrid中的字段对应EiMeta,如果没有现成的实体类,可以在js中通过
+        inInfo.addBlock(new EiBlock(grid.getBlockData().getBlockMeta()))将grid中的块加入到EiInfo中,注意如果有多个Block,而且在后台没有添加eimeta会导致页面返回加载错误.
 Idea：
     1.打了断点有时候显示打勾，断点运行不停留
         点击了run to cursor 运行到光标位置,因此不会在断点停留,断点之后继续程序应使用debug窗口左侧的三角形标志
@@ -28,6 +30,8 @@ Idea：
 PL/SQL:
     1.表列信息的中文注释显示为问号
         AMERICAN_AMERICA.AL32UTF8
+    2.sqlMap修改后无法热部署生效需要重启服务器
+    3.sqlMap中如果有限制条件,而传入的Map中没有添加该参数(就算添加空值也算添加),则会查询不到结果.
 平台使用:
     1.eclipse右键找不到4j平台代码生成插件√
         视图选择不对,之前使用eclipse的导航器视图,应该使用package explorer视图(资源管理器)
@@ -67,4 +71,6 @@ PL/SQL:
    关于主产品产量录入的单位,从提取车间中查询的是kg,实际上接口发送的json单位是万瓶,要么显示录入单位为万瓶,要么显示录入单位为kg然后后台录入数量时进行单位换算
    副产品的物料编码选择要与主产品的物料相关,不能随便选择产出.
    在进行提取产品产出入库操作时,会进行单位转换,要进行转换系数的维护
+        ServiceFMMM27QCB.java----------phase参数查询功能(提高查询效率),修改功能实现
+        对于单元工序的查询,应该要把生产跟踪页面对于时间,生产批号等前面的筛选都加上,不然会出问题
    
