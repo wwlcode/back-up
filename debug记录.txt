@@ -27,6 +27,7 @@ Idea：
         考虑rebuild project以及recompile当前文件z.实在不行就清除缓存然后重启项目
     3.error launching idea ,failed to create JVM 
         优化VMoption的配置文件时,配置项有误,可以恢复默认配置,也可以找出问题所在重新启动
+    4.创建代码文件时最好添加到vcs中,不然上传的代码中如果有调用未添加的代码,会运行失败,而本地不会显示编译错误
 PL/SQL:
     1.表列信息的中文注释显示为问号
         AMERICAN_AMERICA.AL32UTF8
