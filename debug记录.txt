@@ -11,6 +11,7 @@ java:
         4.想要将读取的输入的前后空格去掉,使用String.trim方法
         5.想要对JPanel使用BorderLayout布局,就得在创建对象时进行初始化,JPanel panel=new JPanel(new BorderLayout());而JFrame不需要,直接使用即可.
 js:
+    平台3.9------------------------------------------------------------------------------------
     1.如何在弹窗中再打开一个比它大的弹窗(PMOP08TQ,PMOP08TQP,FMMM11P)?
         使用dialog进行所有的弹窗,然后在PMOP08TQP弹窗中调用window.parent.dialog弹窗函数通过PMOP08TQ来弹出FMMM11P.重点是进行弹窗行为的对象是谁,应注意从弹窗返回的EiInfo是返回到PMOP08TQ页面中,通过PMOP08TQ的js中的window.returnValue获取.
     2.想获取返回的EiInfo从window.returnValue中获取,提取其中的数据可以使用属性名访问(一般用rows).
@@ -24,6 +25,8 @@ js:
         2.想要修改平台功能,比如EFForm中的clear按钮,则可以通过找到对应的js(EF/EFForm.js),复制里面的js函数到要修改的页面的js中(PMOP08TQP.js)进行重写
         3.对于前后台efgrid中的字段对应EiMeta,如果没有现成的实体类,可以在js中通过
         inInfo.addBlock(new EiBlock(grid.getBlockData().getBlockMeta()))将grid中的块加入到EiInfo中,注意如果有多个Block,而且在后台没有添加eimeta会导致页面返回加载错误.
+    平台v6-------------------------------------------------------------------------------------
+    1.当使用div包含一个EFRegion来设置区域隐藏时,如果想用EiInfo.setByNode(id)来获取该region中所有表单组件值输入时,id应设置为外层div的id而不是region的id,否则函数报错
 Idea：
     1.打了断点有时候显示打勾，断点运行不停留
         点击了run to cursor 运行到光标位置,因此不会在断点停留,断点之后继续程序应使用debug窗口左侧的三角形标志
@@ -41,12 +44,23 @@ PL/SQL:
     5.进行数据库查询时应注意使用like进行字符串模糊查找时参数两边要加上'%',而反之使用'='则不需要添加否则无法查询出需要的结果
     6.如果在没有继承ServiceEPBase的类中使用Dao会报nullpointer,正确使用方法应该定义一个私有Dao变量dao,然后将调用该类的类本身的dao通过set函数传给该类.
 平台使用:
+    3.9-------------------------------------------------------------------------
     1.eclipse右键找不到4j平台代码生成插件√
         视图选择不对,之前使用eclipse的导航器视图,应该使用package explorer视图(资源管理器)
     2.如何在使用EFPopupInput时,弹框默认调用一次查询
     3.使用dao.get时,调用sqlMap的方法使用xml文件中的namespace+.+方法id
     extend:
         ef.get与document.getElementById类似,是平台封装的方法.
+    v6--------------------------------------------------------------------------
+    1.修改jdbc.properties中的数据库url为本地连接不生效
+        要在project.properties中修改,项目启动后生效
+    2.mmym03.js,注册的按钮要在对应注册区域如(resultGrid)中编写jQuery语句进行事件绑定,而且要在加载事件完成后(loadComplete)
+前端:
+    v6--------------------------------------------------------------------------
+    1.kendoUI中使用{0:n3}格式显示三位小数,如1,234.000 , {0,c2}数字前带¥符号
+    2.MMYM06.jsp,弹窗时如果显示记录过多或者弹窗高度本身超过父页面显示高度,会导致父页面组件移动
+        设置高度保证显示记录过多时弹窗页出现滚动条而不会使弹窗高度超过父页面显示高度,避免父页面右侧出现滚动条导致页面缩放,组件按比例移位
+    
 正大青春宝项目:
     1.MMCS01.jsp点击弹窗修改后获得的记录不是勾选的记录行,而是鼠标点击的记录行数据√
         获取记录行号方法用的是EFGrid.getCurrentRowIndex(获取当前行,即鼠标点击的记录行),实际应该使用EFGrid.getCheckedRows(获取勾选行)
@@ -77,6 +91,7 @@ PL/SQL:
     12.PMMMWPF中,对于正在执行中的批指令,对有物料投产的phase获取物料数据会返回null,进行foreach遍历的时候会抛异常.
     13.FMMM27QCB中修改记录桶编号时,前面的0会消失
         把修改值转换为BigDecimal会丢失0,要保存字符串和BigDecimal两种类型
+    
 Windows:
     1.netstat -ano|findstr 端口号    //查找占用端口的进程号
     2.taskkill -f -pid 进程号     //杀死对应进程
@@ -89,4 +104,7 @@ Windows:
         ServiceFMMM27QCB.java----------phase参数查询功能(提高查询效率),修改功能实现
         对于单元工序的查询,应该要把生产跟踪页面对于时间,生产批号等前面的筛选都加上,不然会出问题(改为只查询已经完成的批指令,因为功能只针对已完成批指令的参数修改)
         对参数类别为物料平衡的参数进行修改操作,目前问题为获取来的rtPhaseData值已经修改,但是修改值出错.
+        MMYM06物料容器绑定管理
+        
+        MMYM07物料容器绑定履历
    
